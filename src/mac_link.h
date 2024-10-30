@@ -3,7 +3,7 @@
 #ifndef __MAC_LINK_H__
 #define __MAC_LINK_H__
 
-#include "PN532.h"
+#include "JA_PN532.h"
 
 class MACLink {
 public:
@@ -45,7 +45,7 @@ public:
     };
     
 private:
-    PN532 pn532;
+    JA_PN532 pn532;
 };
 
 #endif // __MAC_LINK_H__

@@ -1,14 +1,14 @@
 #pragma once
 
-/* PN532 library by Jackson Horton
+/* JA_PN532 library by Jackson Horton
  */
 
 // This will load the definition for common Particle variable types
 #include "Particle.h"
 
 
-#ifndef __PN532_H__
-#define __PN532_H__
+#ifndef __JA_PN532_H__
+#define __JA_PN532_H__
 
 #include <stdint.h>
 #include "PN532Interface.h"
@@ -125,10 +125,10 @@
 #define FELICA_WRITE_MAX_BLOCK_NUM          10 // for typical FeliCa card
 #define FELICA_REQ_SERVICE_MAX_NODE_NUM     32
 
-class PN532
+class JA_PN532
 {
 public:
-    PN532(PN532Interface &interface);
+    JA_PN532(PN532Interface &interface);
 
     void begin(void);
 
