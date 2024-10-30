@@ -43,7 +43,10 @@ void JA_PN532::PrintHex(const uint8_t *data, const uint32_t numBytes)
         }
         Log.info(data[i], HEX);
     }
+<<<<<<< HEAD
     Log.info("");
+=======
+>>>>>>> da2af44 (Already added NDEF stuff and might have broken I2c along the way. Trying to fix it now.)
 #else
     for (uint8_t i = 0; i < numBytes; i++) {
         printf(" %2X", data[i]);
@@ -83,7 +86,10 @@ void JA_PN532::PrintHexChar(const uint8_t *data, const uint32_t numBytes)
             Log.info(c);
         }
     }
+<<<<<<< HEAD
     Log.info("");
+=======
+>>>>>>> da2af44 (Already added NDEF stuff and might have broken I2c along the way. Trying to fix it now.)
 #else
     for (uint8_t i = 0; i < numBytes; i++) {
         printf(" %2X", data[i]);
