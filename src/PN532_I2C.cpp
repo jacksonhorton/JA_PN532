@@ -6,11 +6,7 @@
 #include "PN532_debug.h"
 #include "Particle.h"
 
-<<<<<<< HEAD
-#define PN532_I2C_ADDRESS       (0x48 >> 1)
-=======
 #define PN532_I2C_ADDRESS       (0x24 >> 1)
->>>>>>> da2af44 (Already added NDEF stuff and might have broken I2c along the way. Trying to fix it now.)
 
 PN532_I2C::PN532_I2C(TwoWire &wire)
 {
@@ -144,11 +140,7 @@ int16_t PN532_I2C::readResponse(uint8_t buf[], uint8_t len, uint16_t timeout)
             0xFF != read()           // STARTCODE2
         ) {
         
-<<<<<<< HEAD
-        return PN532_INVALID_FRAME;
-=======
       return PN532_INVALID_FRAME;
->>>>>>> da2af44 (Already added NDEF stuff and might have broken I2c along the way. Trying to fix it now.)
     }
     
     length = read();
