@@ -1,15 +1,15 @@
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 
-#define DEBUG
+//#define DEBUG
 
 #include "Particle.h"
 
 #ifdef DEBUG
-#define DMSG(args...)       Log.info(args)
-#define DMSG_STR(str)       Log.info(str)
-#define DMSG_HEX(num)       Log.info(" "); Log.info("%X", (num >> 4) & 0x0F); Log.info("%X", num & 0x0F);
-#define DMSG_INT(num)       Log.info(" "); Log.info("%d", (int)num)
+#define DMSG(args...)       Log.trace(args)
+#define DMSG_STR(str)       Log.trace(str)
+#define DMSG_HEX(num)       Log.trace(" %X", (num >> 4) & 0x0F); Log.trace("%X", num & 0x0F);
+#define DMSG_INT(num)       Log.trace(" %d", (int)num)
 #else
 #define DMSG(args...)
 #define DMSG_STR(str)

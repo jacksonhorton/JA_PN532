@@ -9,7 +9,7 @@ NdefMessage::NdefMessage(void)
 NdefMessage::NdefMessage(const uint8_t * data, const int numBytes)
 {
 #ifdef NDEF_DEBUG
-  Log.info("Decoding %d bytes", numBytes);
+  Log.trace("Decoding %d bytes", numBytes);
   PrintHexChar(data, numBytes);
   // DumpHex(data, numBytes, 16);
 #endif
@@ -147,7 +147,7 @@ bool NdefMessage::addRecord(NdefRecord& record)
     }
     else
     {
-        Log.info("WARNING: Too many records. Increase MAX_NDEF_RECORDS.");
+        Log.warn("Too many records. Increase MAX_NDEF_RECORDS.");
         return false;
     }
 }
@@ -243,7 +243,7 @@ NdefRecord NdefMessage::operator[](int index)
 
 void NdefMessage::print()
 {
-    Log.info("\nNDEF Message %d record%s, %d bytes", _recordCount, _recordCount == 1 ? "" : "s", getEncodedSize());
+    Log.trace("\nNDEF Message %d record%s, %d bytes", _recordCount, _recordCount == 1 ? "" : "s", getEncodedSize());
 
     for (int i = 0; i < _recordCount; i++)
     {

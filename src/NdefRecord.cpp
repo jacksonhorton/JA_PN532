@@ -130,6 +130,11 @@ void NdefRecord::encode(uint8_t *data, bool firstRecord, bool lastRecord)
     }
 }
 
+uint8_t NdefRecord::getTnf()
+{
+    return _tnf;
+}
+
 uint8_t NdefRecord::getTnfByte(bool firstRecord, bool lastRecord)
 {
   int value = _tnf;
@@ -140,6 +145,14 @@ uint8_t NdefRecord::getTnfByte(bool firstRecord, bool lastRecord)
   return value;
 }
 
+String NdefRecord::getType()
+{
+    char type[_typeLength + 1];
+    memcpy(type, _type, _typeLength);
+    type[_typeLength] = '\0'; // null terminate
+    return String(type);
+}
+
 void NdefRecord::setTnf(uint8_t tnf)
 {
     _tnf = tnf;
@@ -147,22 +160,27 @@ void NdefRecord::setTnf(uint8_t tnf)
 
 void NdefRecord::print()
 {
-  Log.info("  NDEF Record");
-  Log.info("    TNF 0x%x", _tnf);
+  Log.trace("  NDEF Record");
+  Log.trace("    TNF 0x%x", _tnf);
   switch (_tnf) {
-  case TNF_EMPTY: Log.info("Empty"); break;
-  case TNF_WELL_KNOWN: Log.info("Well Known"); break;
-  case TNF_MIME_MEDIA: Log.info("Mime Media"); break;
-  case TNF_ABSOLUTE_URI: Log.info("Absolute URI"); break;
-  case TNF_EXTERNAL_TYPE: Log.info("External"); break;
-  case TNF_UNKNOWN: Log.info("Unknown"); break;
-  case TNF_UNCHANGED: Log.info("Unchanged"); break;
-  case TNF_RESERVED: Log.info("Reserved"); break;
-  default: Log.info(" ");
+  case TNF_EMPTY: Log.trace("Empty"); break;
+  case TNF_WELL_KNOWN: Log.trace("Well Known"); break;
+  case TNF_MIME_MEDIA: Log.trace("Mime Media"); break;
+  case TNF_ABSOLUTE_URI: Log.trace("Absolute URI"); break;
+  case TNF_EXTERNAL_TYPE: Log.trace("External"); break;
+  case TNF_UNKNOWN: Log.trace("Unknown"); break;
+  case TNF_UNCHANGED: Log.trace("Unchanged"); break;
+  case TNF_RESERVED: Log.trace("Reserved"); break;
+  default: Log.trace(" ");
   }
-  Log.info("    Type Length 0x%x %d", _typeLength, _typeLength);
-  Log.info("    Payload Length 0x%x %d", _payloadLength, _payloadLength);
-  if (_idLength) Log.info("    Id Length 0x%x", _idLength);
+  Log.trace("    Type Length 0x%x %d", _typeLength, _typeLength);
+  Log.trace("    Payload Length 0x%x %d", _payloadLength, _payloadLength);
+  if (_idLength) Log.trace("    Id Length 0x%x", _idLength);
+}
+
+int NdefRecord::getPayloadLength()
+{
+    return _payloadLength;
 }
 
 // assumes the caller sized payload properly
@@ -182,6 +200,7 @@ void NdefRecord::setPayload(const uint8_t * payload, const int numBytes)
     memcpy(_payload, payload, numBytes);
     _payloadLength = numBytes;
 }
+
 
 String NdefRecord::getId()
 {
@@ -219,56 +238,3 @@ void NdefRecord::setId(const uint8_t * id, const unsigned int numBytes)
   memcpy(_id, id, numBytes);
   _idLength = numBytes;
 }
-
-/*
-void NdefRecord::print()
-{
-  Log.info("  NDEF Record");
-  Log.info("    TNF 0x%x", _tnf);
-  switch (_tnf) {
-  case TNF_EMPTY:
-    Log.info("Empty");
-    break;
-  case TNF_WELL_KNOWN:
-    Log.info("Well Known");
-    break;
-  case TNF_MIME_MEDIA:
-    Log.info("Mime Media");
-    break;
-  case TNF_ABSOLUTE_URI:
-    Log.info("Absolute URI");
-    break;
-  case TNF_EXTERNAL_TYPE:
-    Log.info("External");
-    break;
-  case TNF_UNKNOWN:
-    Log.info("Unknown");
-    break;
-  case TNF_UNCHANGED:
-    Log.info("Unchanged");
-    break;
-  case TNF_RESERVED:
-    Log.info("Reserved");
-    break;
-  default:
-    Log.info("");
-  }
-
-  Log.info("    Type Length 0x%x %d", _typeLength, _typeLength);
-  Log.info("    Payload Length 0x%x %d", _payloadLength, _payloadLength);
-  if (_idLength) {
-    Log.info("    Id Length 0x%x", _idLength);
-  }
-  Log.info("    Type ");
-  PrintHexChar(_type, _typeLength);  // Assuming PrintHexChar is compatible with logging output
-  Log.info("    Payload ");
-  PrintHexChar(_payload, _payloadLength);
-  if (_idLength) {
-    Log.info("    Id ");
-    PrintHexChar(_id, _idLength);
-  }
-  Log.info("    Record is %d bytes", getEncodedSize());
-
-
-}
-*/

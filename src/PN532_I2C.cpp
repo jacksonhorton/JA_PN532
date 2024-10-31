@@ -6,7 +6,8 @@
 #include "PN532_debug.h"
 #include "Particle.h"
 
-#define PN532_I2C_ADDRESS       (0x24 >> 1)
+// #define PN532_I2C_ADDRESS       (0x24 >> 1)
+#define PN532_I2C_ADDRESS    0x24
 
 PN532_I2C::PN532_I2C(TwoWire &wire)
 {
