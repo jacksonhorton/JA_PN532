@@ -42,3 +42,18 @@ void DumpHex(const uint8_t *data, const long numBytes, const unsigned int blockS
       data += blockSize;
     }
 }
+
+
+String GetCharOutput(const uint8_t *data, const long numBytes) {
+
+  String charOutput = "";
+
+  for (long szPos = 0; szPos < numBytes; szPos++){
+    if (data[szPos] <= 0x1F)
+      charOutput += ".";
+    else
+      charOutput += (char)data[szPos];
+  }
+  
+  return charOutput;
+}

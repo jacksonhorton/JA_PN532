@@ -10,5 +10,6 @@
 void PrintHex(const uint8_t *data, const long numBytes);
 void PrintHexChar(const uint8_t *data, const long numBytes);
 void DumpHex(const uint8_t *data, const long numBytes, const int blockSize);
+String GetCharOutput(const uint8_t *data, const long numBytes);
 
 #endif
