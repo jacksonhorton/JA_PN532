@@ -35,15 +35,15 @@ void JA_PN532::PrintHex(const uint8_t *data, const uint32_t numBytes)
 #ifdef ARDUINO
   for (uint8_t i = 0; i < numBytes; i++) {
     if (data[i] < 0x10) {
-      Log.trace(" 0");
+      Log.info(" 0");
     } else {
-      Log.trace(' ');
+      Log.info(' ');
     }
-    Log.trace(data[i], HEX);
+    Log.info(data[i], HEX);
   }
 #else
   for (uint8_t i = 0; i < numBytes; i++) {
-    Log.trace(" %2X", data[i]);
+    Log.info(" %2X", data[i]);
   }
 #endif
 }
@@ -64,31 +64,31 @@ void JA_PN532::PrintHexChar(const uint8_t *data, const uint32_t numBytes)
 #ifdef ARDUINO
   for (uint8_t i = 0; i < numBytes; i++) {
     if (data[i] < 0x10) {
-      Log.trace(" 0");
+      Log.info(" 0");
     } else {
-      Log.trace(' ');
+      Log.info(' ');
     }
-    Log.trace(data[i], HEX);
+    Log.info(data[i], HEX);
   }
 
   for (uint8_t i = 0; i < numBytes; i++) {
     char c = data[i];
     if (c <= 0x1f || c > 0x7f) {
-      Log.trace('.');
+      Log.info('.');
     } else {
-      Log.trace(c);
+      Log.info(c);
     }
   }
 #else
   for (uint8_t i = 0; i < numBytes; i++) {
-    Log.trace(" %2X", data[i]);
+    Log.info(" %2X", data[i]);
   }
   for (uint8_t i = 0; i < numBytes; i++) {
     char c = data[i];
     if (c <= 0x1f || c > 0x7f) {
-      Log.trace(".");
+      Log.info(".");
     } else {
-      Log.trace("%c", c);
+      Log.info("%c", c);
     }
   }
 #endif
