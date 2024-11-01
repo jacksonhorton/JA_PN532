@@ -29,7 +29,8 @@ void PrintHexChar(const uint8_t *data, const long numBytes)
       else
 	charOutput += (char)data[szPos];
     }
-  Log.info("%s  %s", hexOutput.c_str(), charOutput.c_str());
+  Log.info("\thex: %s",hexOutput.c_str());
+  Log.info("\tstr: %s", charOutput.c_str());
 }
 
 // Note if buffer % blockSize != 0, last block will not be written
