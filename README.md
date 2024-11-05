@@ -1,5 +1,7 @@
 # PN532
 
+> # **WIP:** this repo is a work in progress. I am currently working to get the PN532 working over I2c consistently.
+
 A Particle library for the PN532 v3 Module by Hiletgo.
 
 
