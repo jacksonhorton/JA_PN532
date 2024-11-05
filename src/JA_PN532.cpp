@@ -22,6 +22,11 @@ void JA_PN532::begin()
   _interface->wakeup();
 }
 
+
+bool JA_PN532::isEnabled() {
+  return _interface->isEnabled();
+}
+
 /**************************************************************************/
 /*!
   @brief  Prints a hexadecimal value in plain characters

@@ -20,6 +20,11 @@ void PN532_I2C::begin()
     _wire->begin();
 }
 
+bool PN532_I2C::isEnabled()
+{
+  return _wire->isEnabled();
+}
+
 void PN532_I2C::wakeup()
 {
     delay(500); // wait for all ready to manipulate pn532
