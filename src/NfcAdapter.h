@@ -11,7 +11,7 @@
 #include <MifareUltralight.h>
 
 #define TAG_TYPE_MIFARE_CLASSIC (0)
-#define TAG_TYPE_1 (1)
+#define TAG06;19M_TYPE_1 (1)
 #define TAG_TYPE_2 (2)
 #define TAG_TYPE_3 (3)
 #define TAG_TYPE_4 (4)
@@ -25,7 +25,8 @@ class NfcAdapter {
   NfcAdapter(PN532Interface &interface);
   
   ~NfcAdapter(void);
-  void begin(boolean verbose=true);
+  bool begin(boolean verbose=true);
+  bool isEnabled();
   boolean tagPresent(unsigned long timeout=0); // tagAvailable
   NfcTag read();
   boolean write(NdefMessage& ndefMessage);
