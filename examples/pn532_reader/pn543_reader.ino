@@ -1,4 +1,3 @@
-// This #include statement was automatically added by the Particle IDE.
 #include <ParticlePN532.h>
 #include "Particle.h"
 #include "PN532_I2C.h"
@@ -22,13 +21,15 @@ void setup()
     uint32_t versiondata = nfc.getFirmwareVersion();
     while (!versiondata)
     {
-        Serial.print("Didn't find PN53x board");
+        Log.info("Didn't find PN53x board");
         delay(1000);
         versiondata = nfc.getFirmwareVersion();
     }
     // Got ok data, print it out!
     Log.info("Found chip PN5%X", (versiondata >> 24) & 0xFF);
     Log.info("Firmware ver. %d.%d", (versiondata >> 16) & 0xFF, (versiondata >> 8) & 0xFF);
+
+    nfc.setPassiveActivationRetries(0xFF);
 
     // configure board to read RFID tags
     nfc.SAMConfig();

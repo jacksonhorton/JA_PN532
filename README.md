@@ -1,18 +1,26 @@
-# PN532
+# ParticlePN532
 
-A Particle library for the PN532 v3 Module by Hiletgo.
-
-
-Most of the original code in this repo was sourced from [this repo](https://github.com/elechouse/PN532/tree/PN532_HSU).
-The oridinal author created it as an Arduino library, so I adjusted the source to work in the Particle enviornment.
+A Particle library port for the PN532 v3 Module by Elechouse.
 
 
-All testing was done on a Photon 2 device. I was able to read and write to an NFC tag while communicating with the PN532 over I2C.
+Most of the original code in this repo was ported from [elechouse's official PN532 repo](https://github.com/elechouse/PN532/tree/master).
+The original author created it as an Arduino library, so I adjusted the source to work in the Particle enviornment.
+
+
+All testing was done on a Photon 2.
 
 
 ## Usage
 
 See the [examples](examples) folder for usage.
+
+
+## Installation
+
+You can install the `ParticlePN532` library using the Particle CLI or in the Web IDE.
+
+
+In the Web IDE, from the libraries tab, search `ParticlePN532` in the community libraries section and install the latest version.
 
 
 ## LICENSE
