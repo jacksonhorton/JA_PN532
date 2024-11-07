@@ -1,15 +1,15 @@
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 
-//#define DEBUG
+//#define PN532_DEBUG
 
 #include "Particle.h"
 
-#ifdef DEBUG
-#define DMSG(args...)       Serial.print(args)
-#define DMSG_STR(str)       Serial.println(str)
-#define DMSG_HEX(num)       Serial.print(' '); Serial.print((num>>4)&0x0F, HEX); Serial.print(num&0x0F, HEX)
-#define DMSG_INT(num)       Serial.print(' '); Serial.print(num)
+#ifdef PN532_DEBUG
+#define DMSG(args...)       Log.info(args)
+#define DMSG_STR(str)       Log.info("%s", str)
+#define DMSG_HEX(num)       Log.info(" %X", num)
+#define DMSG_INT(num)       Log.info(" %d", num)
 #else
 #define DMSG(args...)
 #define DMSG_STR(str)

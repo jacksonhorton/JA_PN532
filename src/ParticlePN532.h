@@ -1,11 +1,10 @@
-#pragma once
-
-/* PN532 library by Jackson Horton
- */
-
-// This will load the definition for common Particle variable types
-#include "Particle.h"
-
+/**************************************************************************/
+/*!
+    @file     ParticlePN532.h
+    @author   Adafruit Industries & Seeed Studio
+    @license  BSD
+*/
+/**************************************************************************/
 
 #ifndef __PN532_H__
 #define __PN532_H__
@@ -64,14 +63,6 @@
 #define MIFARE_CMD_INCREMENT                (0xC1)
 #define MIFARE_CMD_STORE                    (0xC2)
 
-// FeliCa Commands
-#define FELICA_CMD_POLLING                  (0x00)
-#define FELICA_CMD_REQUEST_SERVICE          (0x02)
-#define FELICA_CMD_REQUEST_RESPONSE         (0x04)
-#define FELICA_CMD_READ_WITHOUT_ENCRYPTION  (0x06)
-#define FELICA_CMD_WRITE_WITHOUT_ENCRYPTION (0x08)
-#define FELICA_CMD_REQUEST_SYSTEM_CODE      (0x0C)
-
 // Prefixes for NDEF Records (to identify record type)
 #define NDEF_URIPREFIX_NONE                 (0x00)
 #define NDEF_URIPREFIX_HTTP_WWWDOT          (0x01)
@@ -118,29 +109,19 @@
 #define PN532_GPIO_P34                      (4)
 #define PN532_GPIO_P35                      (5)
 
-// FeliCa consts
-#define FELICA_READ_MAX_SERVICE_NUM         16
-#define FELICA_READ_MAX_BLOCK_NUM           12 // for typical FeliCa card
-#define FELICA_WRITE_MAX_SERVICE_NUM        16
-#define FELICA_WRITE_MAX_BLOCK_NUM          10 // for typical FeliCa card
-#define FELICA_REQ_SERVICE_MAX_NODE_NUM     32
-
-class PN532
+class ParticlePN532
 {
 public:
-    PN532(PN532Interface &interface);
+    ParticlePN532(PN532Interface &interface);
 
     void begin(void);
 
     // Generic PN532 functions
     bool SAMConfig(void);
     uint32_t getFirmwareVersion(void);
-    uint32_t readRegister(uint16_t reg);
-    uint32_t writeRegister(uint16_t reg, uint8_t val);
     bool writeGPIO(uint8_t pinstate);
     uint8_t readGPIO(void);
     bool setPassiveActivationRetries(uint8_t maxRetries);
-    bool setRFField(uint8_t autoRFCA, uint8_t rFOnOff);
 
     /**
     * @brief    Init PN532 as a target
@@ -159,7 +140,7 @@ public:
 
     // ISO14443A functions
     bool inListPassiveTarget();
-    bool readPassiveTargetID(uint8_t cardbaudrate, uint8_t *uid, uint8_t *uidLength, uint16_t timeout = 1000);
+    bool readPassiveTargetID(uint8_t cardbaudrate, uint8_t *uid, uint8_t *uidLength, uint16_t timeout = 1000, bool inlist = false);
     bool inDataExchange(uint8_t *send, uint8_t sendLength, uint8_t *response, uint8_t *responseLength);
 
     // Mifare Classic functions
@@ -175,15 +156,7 @@ public:
     uint8_t mifareultralight_ReadPage (uint8_t page, uint8_t *buffer);
     uint8_t mifareultralight_WritePage (uint8_t page, uint8_t *buffer);
 
-    // FeliCa Functions
-    int8_t felica_Polling(uint16_t systemCode, uint8_t requestCode, uint8_t *idm, uint8_t *pmm, uint16_t *systemCodeResponse, uint16_t timeout=1000);
-    int8_t felica_SendCommand (const uint8_t * command, uint8_t commandlength, uint8_t * response, uint8_t * responseLength);
-    int8_t felica_RequestService(uint8_t numNode, uint16_t *nodeCodeList, uint16_t *keyVersions) ;
-    int8_t felica_RequestResponse(uint8_t *mode);
-    int8_t felica_ReadWithoutEncryption (uint8_t numService, const uint16_t *serviceCodeList, uint8_t numBlock, const uint16_t *blockList, uint8_t blockData[][16]);
-    int8_t felica_WriteWithoutEncryption (uint8_t numService, const uint16_t *serviceCodeList, uint8_t numBlock, const uint16_t *blockList, uint8_t blockData[][16]);
-    int8_t felica_RequestSystemCode(uint8_t *numSystemCode, uint16_t *systemCodeList);
-    int8_t felica_Release();
+    uint8_t ntag21x_auth(const uint8_t *key);
 
     // Help functions to display formatted text
     static void PrintHex(const uint8_t *data, const uint32_t numBytes);
@@ -199,8 +172,6 @@ private:
     uint8_t _uidLen;  // uid len
     uint8_t _key[6];  // Mifare Classic key
     uint8_t inListedTag; // Tg number of inlisted tag.
-    uint8_t _felicaIDm[8]; // FeliCa IDm (NFCID2)
-    uint8_t _felicaPMm[8]; // FeliCa PMm (PAD)
 
     uint8_t pn532_packetbuffer[64];
 

@@ -1,61 +1,29 @@
-# PN532
+# ParticlePN532
 
-A Particle library for PN532
+A Particle library port for the PN532 v3 Module by Elechouse.
 
-## Welcome to your library!
 
-To get started, modify the sources in [src](src). Rename the example folder inside [examples](examples) to a more meaningful name and add additional examples in separate folders.
+Most of the original code in this repo was ported from [elechouse's official PN532 repo](https://github.com/elechouse/PN532/tree/master).
+The original author created it as an Arduino library, so I adjusted the source to work in the Particle enviornment.
 
-To compile your example you can use `particle compile examples/usage` command in [Particle CLI](https://docs.particle.io/guide/tools-and-features/cli#update-your-device-remotely) or use our [Desktop IDE](https://docs.particle.io/guide/tools-and-features/dev/#compiling-code).
 
-Libraries can also depend on other libraries. To add a dependency use [`particle library add`](https://docs.particle.io/guide/tools-and-features/cli#adding-a-library) or [library management](https://docs.particle.io/guide/tools-and-features/dev/#managing-libraries) in Desktop IDE.
+All testing was done on a Photon 2.
 
-After the library is done you can upload it with `particle library upload` or `Upload` command in the IDE. This will create a private (only visible by you) library that you can use in other projects. If you wish to make your library public, use `particle library publish` or `Publish` command.
-
-_TODO: update this README_
 
 ## Usage
 
-Connect XYZ hardware, add the PN532 library to your project and follow this simple example:
+See the [examples](examples) folder for usage.
 
-```
-#include "PN532.h"
-PN532 pN532;
 
-void setup() {
-  pN532.begin();
-}
+## Installation
 
-void loop() {
-  pN532.process();
-}
-```
+You can install the `ParticlePN532` library using the Particle CLI or in the Web IDE.
 
-See the [examples](examples) folder for more details.
 
-## Documentation
+In the Web IDE, from the libraries tab, search `ParticlePN532` in the community libraries section and install the latest version.
 
-TODO: Describe `PN532`
-
-## Contributing
-
-Here's how you can make changes to this library and eventually contribute those changes back.
-
-To get started, [clone the library from GitHub to your local machine](https://help.github.com/articles/cloning-a-repository/).
-
-Change the name of the library in `library.properties` to something different. You can add your name at then end.
-
-Modify the sources in <src> and <examples> with the new behavior.
-
-To compile an example, use `particle compile examples/usage` command in [Particle CLI](https://docs.particle.io/guide/tools-and-features/cli#update-your-device-remotely) or use our [Desktop IDE](https://docs.particle.io/guide/tools-and-features/dev/#compiling-code).
-
-After your changes are done you can upload them with `particle library upload` or `Upload` command in the IDE. This will create a private (only visible by you) library that you can use in other projects. Do `particle library add PN532_myname` to add the library to a project on your machine or add the PN532_myname library to a project on the Web IDE or Desktop IDE.
-
-At this point, you can create a [GitHub pull request](https://help.github.com/articles/about-pull-requests/) with your changes to the original library. 
-
-If you wish to make your library public, use `particle library publish` or `Publish` command.
 
 ## LICENSE
 Copyright 2024 Jackson Horton
 
-Licensed under the <insert your choice of license here> license
+Licensed under the MIT license
