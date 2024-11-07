@@ -1,2 +1,4 @@
 **/*.def
 **/.DS_STORE
+lib
+.vscode
