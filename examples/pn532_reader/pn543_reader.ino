@@ -5,13 +5,11 @@
 // Let Device OS manage the connection to the Particle Cloud
 SYSTEM_MODE(AUTOMATIC);
 
-// Initialize I2C interface and NFC adapter
+SerialLogHandler logHandler(LOG_LEVEL_INFO);
+
+// Initialize I2C interface
 PN532_I2C pn532_i2c(Wire);
 ParticlePN532 nfc(pn532_i2c);
-
-// set log level to LOG_LEVEL_TRACE or LOG_LEVEL_ALL to see debug messages.
-// set to LOG_LEVEL_INFO to see general stuff
-SerialLogHandler logHandler(LOG_LEVEL_INFO);
 
 void setup()
 {
