@@ -40,6 +40,4 @@ In the Web IDE, from the libraries tab, search `ParticlePN532` in the community 
 If you want to use NDEF records, additionally use the `ParticleNDEF` library ([found here](https://github.com/jacksonhorton/ParticleNDEF)).
 
 ## LICENSE
-Copyright 2024 Jackson Horton
-
-Licensed under the MIT license
+[MIT License](https://github.com/jacksonhorton/ParticlePN532/blob/master/LICENSE) (c) 2024, Jackson Horton
